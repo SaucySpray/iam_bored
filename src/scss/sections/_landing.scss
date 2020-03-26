@@ -1,0 +1,25 @@
+.landing {
+    visibility: hidden;
+
+    &__text {
+
+        &--1 {
+            .SplitTextJS-char {
+                visibility: hidden;
+            }
+        }
+
+        &--2 {
+            .SplitTextJS-char {
+                visibility: hidden;
+                font-weight: 200;
+            }
+        }
+
+        &--3 {
+            .SplitTextJS-char {
+                visibility: hidden;
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+@import url('https://rsms.me/inter/inter.css');
+
+// RESET
+html { font-size: 10px; font-family: 'Inter', Arial, sans-serif ;}
+@supports (font-variation-settings: normal) {
+    html { font-family: 'Inter var', sans-serif; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; padding: 0; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; padding: 0; margin: 0; }
+h1, h2, h3, h4 { margin: 0; padding: 0; font-size: 6rem; }
+
+// CUSTOM
+.section {
+    width: 100vw;
+    height: 100vh;
+    padding: 8rem;
+}
+.row { display: flex; flex-direction: row; }
+.col { display: flex; flex-direction: column; }
+
+// FONTS
+@font-face{
+    font-family: Heboo;
+    src: url('../static/fonts/heboo-bold.woff2') format('woff2');
+    font-weight: 600;
+}
