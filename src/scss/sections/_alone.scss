@@ -1,0 +1,71 @@
+.alone {
+    color: $white;
+    background-color: $green;
+
+    &__text {
+
+        &--1 {
+            .SplitTextJS-char {
+                visibility: hidden;
+            }
+        }
+
+        &--2 {
+            .SplitTextJS-chars {
+                font-weight: 700;
+            }
+
+            .SplitTextJS-wrapper {
+                visibility: hidden;
+            }
+        }
+
+        &--3 {
+            margin-top: 6rem;
+
+            .SplitTextJS-char {
+                visibility: hidden;
+            }
+        }
+
+        /* for */
+        &--4 {
+            margin-right: 2rem;
+
+            .SplitTextJS-char {
+                visibility: hidden;
+            }
+        }
+
+        /* 2 */
+        &--5 {
+            margin-right: 2rem;
+
+            .SplitTextJS-char {
+                visibility: hidden;
+                mix-blend-mode: difference;
+            }
+        }
+
+        /* weeks */
+        &--6 {
+            .SplitTextJS-char {
+                visibility: hidden;
+            }
+        }
+
+        /* week 2 */
+        &--7 {
+            .SplitTextJS-char {
+                visibility: hidden;
+            }
+        }
+
+        /* . */
+        &--8 {
+            .SplitTextJS-char {
+                visibility: hidden;
+            }
+        }
+    }
+}

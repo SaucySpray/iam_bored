@@ -1,0 +1,64 @@
+.eternity {
+
+    .row {
+        &:first-child {
+            margin-bottom: 6rem;
+        }
+    }
+
+    &__text {
+        // but it
+        &--1 {
+            margin-right: 3rem;
+
+            .SplitTextJS-char {
+                visibility: hidden;
+            }
+        }
+
+        //feels
+        &--2 {
+            width: 17rem;
+
+            @media screen and (max-width: $vp__md) {
+                width: 11rem;
+            }
+
+            @media screen and (max-width: $vp__sm) {
+                width: 8rem;
+            }
+
+            .SplitTextJS-wrapper {
+                will-change: transform;
+                visibility: hidden;
+            }
+        }
+
+        // like
+        &--3 {
+            margin-left: 2rem;
+
+            .SplitTextJS-char {
+                visibility: hidden;
+            }
+        }
+
+        // eternity
+        &--4 {
+            width: 100rem;
+
+            @media screen and (max-width: $vp__md) {
+                width: 66rem;
+            }
+
+            @media screen and (max-width: $vp__sm) {
+                width: 30rem;
+            }
+
+            .SplitTextJS-char {
+                visibility: hidden;
+                font-weight: 700;
+            }
+        }
+    }
+}

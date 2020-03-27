@@ -1,0 +1,62 @@
+.about {
+    color: $white;
+    background-color: $red;
+    overflow: hidden;
+
+    &__text {
+
+        &--1 {
+            .SplitTextJS-char {
+                visibility: hidden;
+            }
+        }
+
+        &--2 {
+            .SplitTextJS-char {
+                visibility: hidden;
+            }
+        }
+
+        // LO
+        &--3 {
+            .SplitTextJS-wrapper {
+                visibility: hidden;
+            }
+        }
+        // VE
+        &--4 {
+            .SplitTextJS-wrapper {
+                visibility: hidden;
+            }
+        }
+
+        &__love {
+            margin-bottom: 5rem;
+        }
+
+        // Life
+        &--5 {
+            margin-bottom: 5rem;
+
+            .SplitTextJS-char {
+                opacity: 0;
+            }
+        }
+
+        // Blood
+        &--6 {
+            margin-bottom: 1rem;
+
+            .SplitTextJS-char {
+                opacity: 0;
+            }
+        }
+
+        // Types
+        &--7 {
+            .SplitTextJS-char {
+                visibility: hidden;
+            }
+        }
+    }
+}
