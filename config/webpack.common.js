@@ -28,6 +28,12 @@ module.exports = {
                 options: {
                     outputPath: path.join('static', 'fonts')
                 }
+            }, {
+                test: /\.(ogg|mp3|wav|mpe?g)$/i,
+                loader: 'file-loader',
+                options: {
+                    outputPath: path.join('static', 'audio')
+                }
             }
         ]
     }

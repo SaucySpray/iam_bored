@@ -1,0 +1,21 @@
+.horizontal {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 900vw;
+
+    &__container {
+        width: 100vw;
+    }
+
+    &__wrapper {
+        width: calc(100vw - 16rem);
+
+        @media screen and (max-width: $vp__md) {
+            width: calc(100vw - 8rem);
+        }
+
+        @media screen and (max-width: $vp__sm) {
+            width: calc(100vw - 4rem);
+        }
+    }
+}

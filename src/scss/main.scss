@@ -1,4 +1,10 @@
 @import 'config';
+
+// COMPONENTS
+@import './components/horizontal';
+@import './components/player';
+
+// SECTIONS
 @import './sections/landing';
 @import './sections/alone';
 @import './sections/eternity';
@@ -8,4 +14,3 @@
 @import './sections/slow';
 @import './sections/fast';
 @import './sections/care';
-@import './horizontal';

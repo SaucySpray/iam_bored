@@ -17,6 +17,8 @@ export class Horizontal {
         this.isAnimating = false
 
         this.hammer = new Hammer(document.body)
+
+        this.songs = document.querySelectorAll('.playlist__song')
     }
 
     mounted() {
@@ -66,6 +68,14 @@ export class Horizontal {
         // TweenMax.to(this.container, 0.6, { x: `${pos}px`, ease: Expo.easeOut })
     }
 
+    playSong(_index) {
+        console.log(_index)
+        this.songs.forEach(song => {
+            song.pause()
+        })
+        this.songs[_index].play()
+    }
+
     handleWheel(_direction) {
         // FORWARD - Move to the right
         if(_direction > 0) {
@@ -76,9 +86,13 @@ export class Horizontal {
             this.counter(false)
         }
 
-        // console.log(`-${this.slides.current}00vw`)
+        // PLAY
+        this.playSong(this.slides.current)
+
+        // SLIDE
         TweenMax.to(this.container, 0.6, { x: `-${this.slides.current}00vw`, ease: Expo.easeOut })
 
+        // ANIMATE
         if (!this.animated[this.slides.current]) {
             switch (this.slides.current) {
                 case 0: 
