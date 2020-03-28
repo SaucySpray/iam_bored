@@ -26,23 +26,38 @@ export class Horizontal {
     }
 
     events() {
-        this.hammer.on('pan', (_e) => {
-            _e.preventDefault()
-            // 2 = right, 4 = left
-            if (_e.direction == 4) {
-                this.handleWheel(100)
-            }
-            else if (_e.direction == 2) {
-                this.handleWheel(-100)
-            }
-        })
-
-        document.addEventListener('wheel', (_e) => {
-            _e.preventDefault()
-            this.handleWheel(_e.deltaY)
-        }, { passive: false })
-
+        // Responsive
         window.addEventListener('resize', () => this.resize(this.slides))
+
+        // Wheel & Pan
+        window.addEventListener('wheel', 
+            _.debounce(
+                _.throttle((_e) => {
+                    console.log('throttle')
+                    _e.preventDefault()
+                    this.handleWheel(_e.deltaY)
+                }, 1000)
+                , 100
+            ),
+            { passive: false }
+        )
+
+        // this.hammer.on('pan', (_e) => {
+        //     _e.preventDefault()
+        //     // 2 = right, 4 = left
+        //     if (_e.direction == 4) {
+        //         this.handleWheel(100)
+        //     }
+        //     else if (_e.direction == 2) {
+        //         this.handleWheel(-100)
+        //     }
+        // })
+        // .set({ threshold: 1000 })
+
+        // document.addEventListener('wheel', (_e) => {
+        //     _e.preventDefault()
+        //     this.handleWheel(_e.deltaY)
+        // }, { passive: false })
     }
 
     resize(_current) {
@@ -61,40 +76,39 @@ export class Horizontal {
             this.counter(false)
         }
 
-        console.log(`-${this.slides.current}00vw`)
+        // console.log(`-${this.slides.current}00vw`)
         TweenMax.to(this.container, 0.6, { x: `-${this.slides.current}00vw`, ease: Expo.easeOut })
 
         if (!this.animated[this.slides.current]) {
             switch (this.slides.current) {
-                case 0:
+                case 0: 
                     landing()
                     break;
-                case 1:
+                case 1: 
                     alone()
                     break;
-                case 2:
+                case 2: 
                     eternity()
                     break;
-                case 3:
+                case 3: 
                     think()
                     break;
-                case 4:
+                case 4: 
                     about()
                     break;
-                case 5:
+                case 5: 
                     meaning()
                     break;
-                case 6:
+                case 6: 
                     slow()
                     break;
-                case 7:
+                case 7: 
                     fast()
                     break;
-                case 8:
+                case 8: 
                     care()
                     break;
-                default:
-                    break;
+                default: break;
             }
             this.animated[this.slides.current] = true
         }
