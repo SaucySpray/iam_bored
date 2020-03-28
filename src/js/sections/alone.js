@@ -35,19 +35,7 @@ const alone = () => {
     tl1.staggerTo(splitTexts[5].chars, 0.2, { visibility: 'visible', fontVariationSettings: "'wght' " + 200, ease: Sine.easeOut, delay: -0.1 }, 0.1)
     tl1.staggerTo(splitTexts[6].chars, 0.2, { visibility: 'visible', fontVariationSettings: "'wght' " + 200, ease: Sine.easeOut, delay: -0.4 }, 0.1)
 
-    // Scene
-    const scene = new ScrollMagic.Scene({
-        duration: '50%',
-        triggerHook: 1,
-        offset: 0.1
-    })
-    scene.addIndicators({ name: "alone", colorEnd: "#FF0000" })
-
-    // const sceneTl = new TimelineMax()
-    // sceneTl.to(wrapper, 0, { position: 'fixed', opacity: [1, 0] })
-    // scene.setTween(sceneTl)
-
-    return tl1, tl2, tl3, tl4, scene
+    return tl1, tl2, tl3, tl4
 }
 
 // fontVariationSettings: "'wght' " + 700

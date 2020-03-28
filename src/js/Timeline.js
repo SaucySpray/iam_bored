@@ -1,5 +1,3 @@
-// import { gsap, TimelineMax } from 'gsap'
-// import ScrollMagic from 'scrollmagic'
 import { landing, alone, eternity, think, about, meaning, slow, fast } from './sections'
 
 class Timeline {
@@ -13,15 +11,15 @@ class Timeline {
     }
 
     mounted() {
-        this.landing = landing()
+        // this.landing = landing()
 
-        this.alone = alone()
+        // this.alone = alone()
 
-        this.eternity = eternity()
+        // this.eternity = eternity()
 
-        this.think = think()
+        // this.think = think()
 
-        this.about = about()
+        // this.about = about()
 
         // document.addEventListener('keypress', (_e) => {
         //     switch (_e.key) {

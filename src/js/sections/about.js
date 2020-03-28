@@ -33,11 +33,11 @@ const about = () => {
     tl3.to(splitTexts[3].words[0], 0.6, { rotate: 45, ease: Bounce.easeOut, delay: 0.3 })
 
     //Life
-    tl3.to(carousel, 0.4, { y: '-33%', ease: Sine.easeInOut, delay: 0.4 })
+    tl3.to(carousel, 0.4, { y: '-28%', ease: Sine.easeInOut, delay: 0.4 })
     tl3.staggerTo(splitTexts[4].chars, 0.4, { opacity: 1, y: 10, ease: Bounce.easeOut, delay: -0.2 }, 0.1)
 
     // Blood
-    tl3.to(carousel, 0.4, { y: '-58%', ease: Sine.easeInOut, delay: 0.4 })
+    tl3.to(carousel, 0.4, { y: '-56%', ease: Sine.easeInOut, delay: 0.4 })
     tl3.staggerTo(splitTexts[5].chars, 0.4, 
     {
         opacity: 1, y: -15, ease: Power1.easeIn, onComplete() {

@@ -6,7 +6,8 @@ html { font-size: 10px; font-family: 'Inter', Arial, sans-serif ;}
     html { font-family: 'Inter var', sans-serif; }
 }
 * { box-sizing: border-box; }
-body { margin: 0; padding: 0; overflow-x: hidden; }
+html, body { overflow: hidden; }
+body { margin: 0; padding: 0; }
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; padding: 0; margin: 0; }
 
@@ -18,14 +19,14 @@ $vp__sm: 480px;
 // COLORS
 $white: #fff;
 $black: #161616;
-$green: #177a44;
-$green2: #03C9A9;
+$green2: #177a44;
+$green: #03C9A9;
 $purple: #9B59B6;
-$blue: #0984e3;
-$blue2: #22A7F0;
+$blue2: #0984e3;
+$blue: #22A7F0;
 $orange: #F9690E;
-$red: #d63031;
-$red2: #F64747;
+$red2: #d63031;
+$red: #F64747;
 
 // CUSTOM
 h1, h2, h3, h4 {
@@ -66,6 +67,8 @@ h1, h2, h3, h4 {
     }
 
     &--wrapper {
+        width: 100%;
+        height: 100%;
         transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     }
 }

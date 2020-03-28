@@ -5,4 +5,4 @@ import { Horizontal } from './js/Horizontal'
 
 new Timeline()
 new Grain(document.querySelector('.grain'))
-Horizontal()
+new Horizontal()

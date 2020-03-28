@@ -1,0 +1,68 @@
+.care {
+
+    &__infos {
+        position: absolute;
+        bottom: 8rem;
+        right: 8rem;
+
+        @media screen and (max-width: $vp__md) {
+            bottom: 4rem;
+            right: 4rem;
+        }
+
+        @media screen and (max-width: $vp__sm) {
+            bottom: 2rem;
+            right: 2rem;
+        }
+        
+        &>h1, h2 {
+            font-size: 3.2rem;
+
+            @media screen and (max-width: $vp__md) {
+                font-size: 2.6rem;
+            }
+
+            @media screen and (max-width: $vp__sm) {
+                font-size: 2.2rem;
+            }
+        }
+    }
+
+    &__text {
+
+        &--1 {
+
+            &.SplitTextJS--char {
+
+            }
+        }
+
+        &--2 {
+
+            &.SplitTextJS--char {
+                
+            }
+        }
+
+        &--3 {
+
+            &.SplitTextJS--char {
+                
+            }
+        }
+
+        &--4 {
+
+            &.SplitTextJS--char {
+                
+            }
+        }
+
+        &--5 {
+
+            &.SplitTextJS--char {
+                
+            }
+        }
+    }
+}
