@@ -24,9 +24,9 @@ const landing = () => {
 
     // Points
     const tl3 = new TimelineMax({ repeat: -1, yoyo: true, delay: 2 })
-    tl3.to(splitTexts[2].chars[0], 0.1, { visibility: 'visible', delay: 0.5 })
-    tl3.to(splitTexts[2].chars[1], 0.1, { visibility: 'visible', delay: 1 })
-    tl3.to(splitTexts[2].chars[2], 0.5, { visibility: 'visible', delay: 1 })
+    tl3.to(splitTexts[2].chars[0], 0.1, { visibility: 'visible', delay: 0.25 })
+    tl3.to(splitTexts[2].chars[1], 0.1, { visibility: 'visible', delay: 0.5 })
+    tl3.to(splitTexts[2].chars[2], 0.5, { visibility: 'visible', delay: 0.5 })
 
     return tl1, tl2, tl3
 }

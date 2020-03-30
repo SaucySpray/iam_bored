@@ -4,9 +4,14 @@
   "description": "I am bored to stay home alone.",
   "main": "index.js",
   "dependencies": {
+    "camera-controls": "^1.19.1",
+    "glslify-loader": "^2.0.0",
     "gsap": "^3.2.6",
+    "p5": "^1.0.0",
+    "raw-loader": "^3.0.0",
     "scrollmagic": "^2.0.7",
-    "split-text-js": "^1.0.3"
+    "split-text-js": "^1.0.3",
+    "three": "^0.115.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",

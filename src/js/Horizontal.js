@@ -1,12 +1,24 @@
+import * as THREE from 'three'
+
 import { landing, alone, eternity, think, about, meaning, slow, fast, care } from './sections'
+const textures = ['https://i.imgur.com/CcY7wuc.jpg', 'https://i.imgur.com/sbOv46d.jpg', 'https://i.imgur.com/ZinsbDR.jpg', 'https://i.imgur.com/XrYJcVQ.jpg', 'https://i.imgur.com/3Za3uqr.jpg', 'https://i.imgur.com/yS812WZ.jpg', 'https://i.imgur.com/iBqzSTX.jpg', 'https://i.imgur.com/f11HIQw.jpg', 'https://i.imgur.com/r9RXW4z.jpg']
 
 export class Horizontal {
-    constructor() {
-        this.cache()
+    constructor(_three) {
+        this.cache(_three)
         window.onload = this.mounted()
     }
 
-    cache() {
+    cache(_three) {
+        this.three = _three
+        this.meshWrapper = this.three.scene.children[0]
+        this.mesh = this.three.scene.children[0].children[0]
+        this.textures = textures
+        this.loader = new THREE.TextureLoader()
+        this.mouse = {
+            x: 0,
+            y: 0
+        }
         this.container = document.querySelector('.horizontal')
         this.sections = this.container.querySelectorAll('.section')
         this.slides = {}
@@ -31,15 +43,34 @@ export class Horizontal {
         // Responsive
         window.addEventListener('resize', () => this.resize(this.slides))
 
+        this.mousemove = window.addEventListener('mousemove', (_e) => {
+            this.handleMouse(_e)
+        })
+
         // Wheel & Pan
         window.addEventListener('wheel', 
             _.debounce(
                 _.throttle((_e) => {
-                    console.log('throttle')
                     _e.preventDefault()
                     this.handleWheel(_e.deltaY)
                 }, 1000)
                 , 100
+            ),
+            { passive: false }
+        )
+
+        this.hammer.on('pan',
+            _.debounce(
+                _.throttle((_e) => {
+                    console.log('mobile throttle')
+                    if (_e.direction == 4) {
+                        this.handleWheel(-100)
+                    }
+                    else if (_e.direction == 2) {
+                        this.handleWheel(100)
+                    }
+                }, 1000)
+                ,100
             ),
             { passive: false }
         )
@@ -76,6 +107,17 @@ export class Horizontal {
         this.songs[_index].play()
     }
 
+    handleMouse(_e) {
+        this.mouse.x = _e.clientX
+        this.mouse.y = _e.clientY
+
+        TweenMax.to(this.meshWrapper.rotation, 1.2, {
+            x: ((((this.mouse.y / window.innerWidth) - 0.5)) * 20) * Math.PI / 180,
+            y: ((((this.mouse.x / window.innerWidth) - 0.5)) * 20) * Math.PI / 180,
+            ease: Sine.easeOut
+        })
+    }
+
     handleWheel(_direction) {
         // FORWARD - Move to the right
         if(_direction > 0) {
@@ -91,6 +133,13 @@ export class Horizontal {
 
         // SLIDE
         TweenMax.to(this.container, 0.6, { x: `-${this.slides.current}00vw`, ease: Expo.easeOut })
+
+        // THREE - move mesh & change image
+        TweenMax.to(this.mesh.rotation, 1.6, {
+            y: this.slides.current % 2 === 0 ? (0 * (Math.PI / 180)) : (360 * (Math.PI / 180)), 
+            ease: Expo.easeOut
+        })
+        this.three.scene.children[0].children[0].material.uniforms.u_texture_0.value = this.loader.load(this.textures[this.slides.current])
 
         // ANIMATE
         if (!this.animated[this.slides.current]) {

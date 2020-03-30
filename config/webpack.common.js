@@ -34,6 +34,14 @@ module.exports = {
                 options: {
                     outputPath: path.join('static', 'audio')
                 }
+            },
+            {
+                test: /\.(glsl|vs|fs|vert|frag)$/,
+                exclude: /node_modules/,
+                use: [
+                    'raw-loader',
+                    'glslify-loader'
+                ]
             }
         ]
     }

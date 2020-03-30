@@ -1,6 +1,6 @@
 .alone {
     color: $white;
-    background-color: $green;
+    background-color: $yellow;
 
     &__text {
 
@@ -40,10 +40,10 @@
         /* 2 */
         &--5 {
             margin-right: 2rem;
+            mix-blend-mode: unset;
 
             .SplitTextJS-char {
                 visibility: hidden;
-                mix-blend-mode: difference;
             }
         }
 

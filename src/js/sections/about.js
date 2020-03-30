@@ -26,18 +26,18 @@ const about = () => {
 
     // Carousel
     const tl3 = new TimelineMax({ delay: 1.8 })
-    tl3.to(splitTexts[2].words[0], 0.1, { visibility: 'visible' })
 
     // Love
+    tl3.to(splitTexts[2].words[0], 0.1, { visibility: 'visible' })
     tl3.to(splitTexts[3].words[0], 0.1, { visibility: 'visible', transformOrigin: "left bottom", delay: 0.3 })
-    tl3.to(splitTexts[3].words[0], 0.6, { rotate: 45, ease: Bounce.easeOut, delay: 0.3 })
+    tl3.to(splitTexts[3].words[0], 0.6, { rotate: 45, ease: Bounce.easeOut, delay: 0.2 })
 
     //Life
-    tl3.to(carousel, 0.4, { y: '-28%', ease: Sine.easeInOut, delay: 0.4 })
+    tl3.to(carousel, 0.4, { y: '-28%', ease: Sine.easeInOut, delay: 0.9 })
     tl3.staggerTo(splitTexts[4].chars, 0.4, { opacity: 1, y: 10, ease: Bounce.easeOut, delay: -0.2 }, 0.1)
 
     // Blood
-    tl3.to(carousel, 0.4, { y: '-56%', ease: Sine.easeInOut, delay: 0.4 })
+    tl3.to(carousel, 0.4, { y: '-56%', ease: Sine.easeInOut, delay: 2.2 })
     tl3.staggerTo(splitTexts[5].chars, 0.4, 
     {
         opacity: 1, y: -15, ease: Power1.easeIn, onComplete() {
@@ -46,7 +46,7 @@ const about = () => {
     }, 0.1)
 
     // Types
-    tl3.to(carousel, 0.4, { y: '-82%', ease: Sine.easeInOut, delay: 0.4 })
+    tl3.to(carousel, 0.4, { y: '-82%', ease: Sine.easeInOut, delay: 1.4 })
     tl3.staggerTo(splitTexts[6].chars, 0.6, { visibility: 'visible' }, 0.2)
 
     tl3.to(carousel, 0.3, { y: '0%', ease: Sine.easeInOut, delay: 0.6 })

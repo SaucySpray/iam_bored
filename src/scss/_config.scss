@@ -25,6 +25,7 @@ $purple: #9B59B6;
 $blue2: #0984e3;
 $blue: #22A7F0;
 $orange: #F9690E;
+$yellow: #f9e70e;
 $red2: #d63031;
 $red: #F64747;
 
@@ -41,15 +42,6 @@ h1, h2, h3, h4 {
     @media screen and (max-width: $vp__sm) {
         font-size: 3rem;
     }
-}
-.grain {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    pointer-events: none;
 }
 .section {
     width: 100vw;
