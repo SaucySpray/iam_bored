@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { Interaction } from 'three.interaction'
 
 const options = {
     alpha: false,
@@ -6,7 +7,7 @@ const options = {
     camZPos: 5,
 }
 
-const textures = ['https://i.imgur.com/CcY7wuc.jpg', 'https://i.imgur.com/sbOv46d.jpg', 'https://i.imgur.com/ZinsbDR.jpg', 'https://i.imgur.com/XrYJcVQ.jpg', 'https://i.imgur.com/3Za3uqr.jpg', 'https://i.imgur.com/yS812WZ.jpg', 'https://i.imgur.com/iBqzSTX.jpg', 'https://i.imgur.com/f11HIQw.jpg', 'https://i.imgur.com/r9RXW4z.jpg']
+const textures = ['https://i.imgur.com/sbOv46d.jpg', 'https://i.imgur.com/CcY7wuc.jpg', 'https://i.imgur.com/ZinsbDR.jpg', 'https://i.imgur.com/XrYJcVQ.jpg', 'https://i.imgur.com/3Za3uqr.jpg', 'https://i.imgur.com/yS812WZ.jpg', 'https://i.imgur.com/iBqzSTX.jpg', 'https://i.imgur.com/f11HIQw.jpg', 'https://i.imgur.com/r9RXW4z.jpg']
 
 class Three {
     constructor(_container, _options = options, _textures = textures) {
@@ -33,11 +34,13 @@ class Three {
             x: 0,
             y: 0
         }
+        this.player = document.querySelector('.player')
 
         // Scene
         this.camera
         this.scene
         this.renderer
+        this.interaction
 
         // Shader
         this.loader
@@ -69,6 +72,9 @@ class Three {
         this.renderer.setPixelRatio(window.devicePixelRatio)
         this.renderer.domElement.classList.add('canvas')
         this.container.appendChild(this.renderer.domElement)
+
+        // Interaction
+        this.interaction = new Interaction(this.renderer, this.scene, this.camera)
 
         // Shader
         this.loader = new THREE.TextureLoader()
@@ -164,9 +170,17 @@ class Three {
 
         this.mesh = new THREE.Mesh(geometry, material)
 
+        // Create an Object3D to wrap & animate
         this.meshWrapper = new THREE.Object3D()
         this.meshWrapper.add(this.mesh)
 
+        // Interaction
+        this.meshWrapper.cursor = 'pointer'
+        this.meshWrapper.on('click', () => {
+            this.player.classList.add('player--active')
+        })
+
+        // Append to scene
         this.scene.add(this.meshWrapper)
     }
 }

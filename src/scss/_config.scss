@@ -19,10 +19,8 @@ $vp__sm: 480px;
 // COLORS
 $white: #fff;
 $black: #161616;
-$green2: #177a44;
 $green: #03C9A9;
 $purple: #9B59B6;
-$blue2: #0984e3;
 $blue: #22A7F0;
 $orange: #F9690E;
 $yellow: #f9e70e;
@@ -34,6 +32,7 @@ h1, h2, h3, h4 {
     margin: 0;
     padding: 0;
     font-size: 6rem;
+    color: $white;
 
     @media screen and (max-width: $vp__md) {
         font-size: 4rem;
@@ -48,7 +47,6 @@ h1, h2, h3, h4 {
     height: 100vh;
     padding: 8rem;
     position: relative;
-    background-color: $white;
 
     @media screen and (max-width: $vp__md) {
         padding: 4rem;
@@ -59,34 +57,27 @@ h1, h2, h3, h4 {
     }
 
     &--wrapper {
+        position: relative;
         width: 100%;
         height: 100%;
         transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     }
 }
-.z0 { z-index: 0; }
-.z1 { z-index: 1; }
-.z2 { z-index: 2; }
-.z3 { z-index: 3; }
-.z4 { z-index: 4; }
-.z5 { z-index: 5; }
-.z6 { z-index: 6; }
-.z7 { z-index: 7; }
-.z8 { z-index: 8; }
+.z1 { z-index: 10; }
 .wrap { display: flex; flex-wrap: wrap; }
 .row { display: flex; flex-direction: row; }
 .col { display: flex; flex-direction: column; }
 
-// FONTS
-@font-face{
-    font-family: Heboo;
-    src: url('../static/fonts/heboo-bold.woff2') format('woff2');
-    font-weight: 600;
+// TEST
+#defaultCanvas0 {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -10;
 }
 
-// TEST
-.test {
-    // &>* {
-    //     visibility: hidden;
-    // }
+#threejs {
+    z-index: -5;
 }

@@ -47,6 +47,10 @@
         &--4 {
             width: 100rem;
 
+            @media screen and (max-width: $vp__lg) {
+                width: 74rem;
+            }
+
             @media screen and (max-width: $vp__md) {
                 width: 66rem;
             }

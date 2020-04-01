@@ -1,7 +1,18 @@
 import * as THREE from 'three'
 
 import { landing, alone, eternity, think, about, meaning, slow, fast, care } from './sections'
-const textures = ['https://i.imgur.com/CcY7wuc.jpg', 'https://i.imgur.com/sbOv46d.jpg', 'https://i.imgur.com/ZinsbDR.jpg', 'https://i.imgur.com/XrYJcVQ.jpg', 'https://i.imgur.com/3Za3uqr.jpg', 'https://i.imgur.com/yS812WZ.jpg', 'https://i.imgur.com/iBqzSTX.jpg', 'https://i.imgur.com/f11HIQw.jpg', 'https://i.imgur.com/r9RXW4z.jpg']
+
+const songs = [
+    { artist: 'Kings of leon', song: 'Trunk', texture: 'https://i.imgur.com/sbOv46d.jpg', link: 'https://open.spotify.com/track/3TC1g3YgznXQLEW4hyZr3Q?si=ZU0stco0Q4KspdBhvUC48A'}, 
+    { artist: 'The Whitest Boy Alive', song: 'Golden cage', texture: 'https://i.imgur.com/CcY7wuc.jpg', link: 'https://open.spotify.com/track/6L4ZU09mKnKaPq25xWHht6?si=YQ1n0Gc2TPyE5I3pBti19w'}, 
+    { artist: 'Bonobo', song: 'Maia - Mixed', texture: 'https://i.imgur.com/ZinsbDR.jpg', link: 'https://open.spotify.com/track/4tUA0XgKiEigUywHbtkdLX?si=drsoZq3UTZaDukPm1isadw'}, 
+    { artist: 'Crystal places', song: 'Bent your mind', texture: 'https://i.imgur.com/XrYJcVQ.jpg', link: 'https://open.spotify.com/track/2HzIdqa2b7g4EPV2LmLZYQ?si=1QMx4SZyRXOtBd2tDnwNRQ'}, 
+    { artist: 'Joji', song: 'YEAH RIGHT', texture: 'https://i.imgur.com/3Za3uqr.jpg', link: 'https://open.spotify.com/track/1VGzxJnVQND7Cg5H5wGj14?si=nlfzkXu6SsW0CEYGV73J2A'}, 
+    { artist: 'BRNS', song: 'Mexico', texture: 'https://i.imgur.com/yS812WZ.jpg', link: 'https://open.spotify.com/track/3Auh49LuW0UQdEsAdXxrJe?si=tg8mAo98QQSB1RB6zYCrcw'}, 
+    { artist: 'Clairo', song: 'Hello?', texture: 'https://i.imgur.com/iBqzSTX.jpg', link: 'https://open.spotify.com/track/7qwt4xUIqQWCu1DJf96g2k?si=SQGyUZtYQCKDUF6Bp5hQYA'}, 
+    { artist: '1991', song: 'Sprites', texture: 'https://i.imgur.com/f11HIQw.jpg', link: 'https://open.spotify.com/track/6k52BWUtebggXAoGZjzKVX?si=ec8ISJPYTY-0ByyXNDCMgw'}, 
+    { artist: 'Nirvana', song: 'About a girl', texture: 'https://i.imgur.com/r9RXW4z.jpg', link: 'https://open.spotify.com/track/55yvzYuvJYG2RUEnMK78tr?si=_J-x4-QQRk-cYq7n89-W7g'}
+]
 
 export class Horizontal {
     constructor(_three) {
@@ -13,7 +24,6 @@ export class Horizontal {
         this.three = _three
         this.meshWrapper = this.three.scene.children[0]
         this.mesh = this.three.scene.children[0].children[0]
-        this.textures = textures
         this.loader = new THREE.TextureLoader()
         this.mouse = {
             x: 0,
@@ -21,6 +31,7 @@ export class Horizontal {
         }
         this.container = document.querySelector('.horizontal')
         this.sections = this.container.querySelectorAll('.section')
+        this.display = document.querySelector('.player__display')
         this.slides = {}
         this.slides.current = 0
         this.slides.max = 8
@@ -31,11 +42,13 @@ export class Horizontal {
         this.hammer = new Hammer(document.body)
 
         this.songs = document.querySelectorAll('.playlist__song')
+        this.songs.forEach(sound => sound.volume = 0.05)
     }
 
     mounted() {
         this.container.style.transform = ''
         landing()
+        this.setDisplay()
         this.events()
     }
 
@@ -74,23 +87,6 @@ export class Horizontal {
             ),
             { passive: false }
         )
-
-        // this.hammer.on('pan', (_e) => {
-        //     _e.preventDefault()
-        //     // 2 = right, 4 = left
-        //     if (_e.direction == 4) {
-        //         this.handleWheel(100)
-        //     }
-        //     else if (_e.direction == 2) {
-        //         this.handleWheel(-100)
-        //     }
-        // })
-        // .set({ threshold: 1000 })
-
-        // document.addEventListener('wheel', (_e) => {
-        //     _e.preventDefault()
-        //     this.handleWheel(_e.deltaY)
-        // }, { passive: false })
     }
 
     resize(_current) {
@@ -100,10 +96,11 @@ export class Horizontal {
     }
 
     playSong(_index) {
-        console.log(_index)
         this.songs.forEach(song => {
             song.pause()
+            song.currentTime = 0
         })
+        this.songs[_index].volume = 0.2
         this.songs[_index].play()
     }
 
@@ -129,7 +126,8 @@ export class Horizontal {
         }
 
         // PLAY
-        this.playSong(this.slides.current)
+        // this.playSong(this.slides.current)
+        this.setDisplay()
 
         // SLIDE
         TweenMax.to(this.container, 0.6, { x: `-${this.slides.current}00vw`, ease: Expo.easeOut })
@@ -139,7 +137,7 @@ export class Horizontal {
             y: this.slides.current % 2 === 0 ? (0 * (Math.PI / 180)) : (360 * (Math.PI / 180)), 
             ease: Expo.easeOut
         })
-        this.three.scene.children[0].children[0].material.uniforms.u_texture_0.value = this.loader.load(this.textures[this.slides.current])
+        this.mesh.material.uniforms.u_texture_0.value = this.loader.load(songs[this.slides.current].texture)
 
         // ANIMATE
         if (!this.animated[this.slides.current]) {
@@ -177,6 +175,14 @@ export class Horizontal {
         }
     }
 
+    setDisplay(){
+        this.display.querySelector('.player__display__title').innerHTML = ''
+        this.display.querySelector('.player__display__title').innerHTML = songs[this.slides.current].song
+        this.display.querySelector('.player__display__artist').innerHTML = ''
+        this.display.querySelector('.player__display__artist').innerHTML = songs[this.slides.current].artist
+        this.display.querySelector('.player__display__link>a').href = songs[this.slides.current].link
+    }
+
     counter(_increase) {
         let counter = this.slides.current
 
@@ -202,5 +208,7 @@ export class Horizontal {
                 this.slides.current = counter
             }
         }
+
+        this.container.setAttribute('data-current', this.slides.current)
     }
 }

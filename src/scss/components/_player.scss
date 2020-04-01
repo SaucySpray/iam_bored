@@ -1,36 +1,100 @@
 .player {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     width: 100vw;
+    height: 100vh;
     position: fixed;
     bottom: 0;
     left: 0;
-    z-index: 50;
+    z-index: 100;
+    pointer-events: none;
 
-    // &__bar {
-    //     position: relative;
-    //     z-index: 55;
-    //     height: 3rem;
+    &--active {
+        background-color: rgba($black, 0.12);
+        pointer-events: visible;
 
-    //     &__inner {
-    //         width: 100%;
-    //         height: 100%;
-    //         background-color: $green;
-    //         mix-blend-mode: difference;
-    //     }
-    // }
+        .player__display {
+            opacity: 1;
+        }
+    }
 
-    // &__display {
-    //     width: 16rem;
-    //     height: 16rem;
-    //     position: absolute;
-    //     bottom: 3rem;
-    //     left: 0;
-    //     background-color: $black;
-    //     opacity: 0.5;
+    &__display {
+        opacity: 0;
+        width: 50rem;
+        height: 50rem;
+        padding: 2rem;
+        background-color: rgba($black, 0.5);
+        transition: 0.2s ease-out;
+        position: relative;
 
-    //     &--active {
+        @media screen and (max-width: $vp__md) {
+            width: 35rem;
+            height: 35rem;
+        }
 
-    //     }
-    // }
+        @media screen and (max-width: $vp__sm) {
+            width: 28rem;
+            height: 28rem;
+        }
+
+        &__close {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 4rem;
+            height: 4rem;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            cursor: pointer;
+
+            &>span {
+                font-size: 4rem;
+                color: $white;
+                text-align: center;
+                vertical-align: center;
+            }
+        }
+
+        &__title {
+            font-size: 4rem;
+            font-weight: 300;
+            color: $white;
+
+            @media screen and (max-width: $vp__md) {
+                font-size: 3rem;
+            }
+
+            @media screen and (max-width: $vp__sm) {
+                font-size: 2rem;
+            }
+        }
+
+        &__artist {
+            font-size: 4rem;
+            font-weight: 500;
+            color: $white;
+            margin-bottom: 3rem;
+
+            @media screen and (max-width: $vp__md) {
+                font-size: 3rem;
+            }
+
+            @media screen and (max-width: $vp__sm) {
+                font-size: 2rem;
+            }
+        }
+
+        &__link {
+            font-size: 2rem;
+            font-weight: 500;
+            color: $white;
+
+            &>a {
+                font-weight: 400;
+            }
+        }
+    }
 }

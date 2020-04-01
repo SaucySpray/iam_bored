@@ -23,7 +23,7 @@ const landing = () => {
     tl2.staggerTo(splitTexts[1].chars, 1.6, { visibility: 'visible' }, 0.1)
 
     // Points
-    const tl3 = new TimelineMax({ repeat: -1, yoyo: true, delay: 2 })
+    const tl3 = new TimelineMax({ repeat: -1, yoyo: true, delay: 2.3 })
     tl3.to(splitTexts[2].chars[0], 0.1, { visibility: 'visible', delay: 0.25 })
     tl3.to(splitTexts[2].chars[1], 0.1, { visibility: 'visible', delay: 0.5 })
     tl3.to(splitTexts[2].chars[2], 0.5, { visibility: 'visible', delay: 0.5 })
