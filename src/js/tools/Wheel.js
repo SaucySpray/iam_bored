@@ -1,12 +1,14 @@
 class Wheel {
-    constructor(_callback) {
-        this.cache(_callback)
+    constructor() {
+        this.cache()
         this.event()
+
+        return this.value
     }
 
-    cache(_callback) {
-        this.callback = _callback
+    cache() {
         this.hammer = new Hammer(document.body)
+        this.value = 0
     }
 
     event() {
@@ -15,7 +17,7 @@ class Wheel {
             _.debounce(
                 _.throttle((_e) => {
                     _e.preventDefault()
-                    this.callback(_e.deltaY * 0.01)
+                    this.value = _e.deltaY * 0.01
                 }, 1000)
                 , 100
             ),
@@ -25,7 +27,7 @@ class Wheel {
         this.hammer.on('pan',
             _.debounce(
                 _.throttle((_e) => {
-                    this.callback(_e.deltaY * 0.01)
+                    this.value = _e.deltaY * 0.01
                 }, 1000)
                 , 100
             ),

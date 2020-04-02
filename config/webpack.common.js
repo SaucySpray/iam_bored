@@ -23,6 +23,13 @@ module.exports = {
                     outputPath: path.join('static', 'img')
                 }
             }, {
+                test: /\.(mov|mp4)$/,
+                loader: 'file-loader',
+                options: {
+                    outputPath: 'static/video',
+                    name: '[name].[ext]',
+                }
+            }, {
                 test: /\.(woff|woff2|otf|eot|ttf)$/,
                 loader: 'file-loader',
                 options: {
@@ -32,7 +39,8 @@ module.exports = {
                 test: /\.(ogg|mp3|wav|mpe?g)$/i,
                 loader: 'file-loader',
                 options: {
-                    outputPath: path.join('static', 'audio')
+                    outputPath: 'static/audio',
+                    name: '[name].[ext]',
                 }
             },
             {
