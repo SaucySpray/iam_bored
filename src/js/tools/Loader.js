@@ -5,8 +5,8 @@ import { landing } from '../sections'
 class Loader {
     constructor(_three, _controller) {
         this.cache(_three, _controller)
-        this.event()
         this.mounted()
+        this.event()
     }
 
     cache(_three, _controller) {
@@ -24,7 +24,7 @@ class Loader {
     }
 
     mounted() {
-        this.in()
+        // this.in()
     }
 
     in() {
