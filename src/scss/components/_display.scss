@@ -1,0 +1,58 @@
+.display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0.8;
+
+    &--active {
+        display: block !important;
+    }
+
+    &__el {
+        display: none;
+        position: absolute;
+        bottom: 8rem;
+
+        @media screen and (max-width: $vp__md) {
+            bottom: 4rem;
+        }
+
+        @media screen and (max-width: $vp__sm) {
+            bottom: 2rem;
+        }
+
+        &--0, &--1, &--5 {
+
+            .row>h2 {
+                color: $black;
+            }
+        }
+    }
+
+    &__wrapper {
+        overflow: hidden;
+    }
+
+    &__text {
+        font-weight: 200;
+
+        &__left {
+            .SplitTextJS-char {
+                transform: translateY(-100%);
+            }
+        }
+
+        &__right {
+            .SplitTextJS-char {
+                transform: translateY(100%);
+            }
+        }
+    }
+}

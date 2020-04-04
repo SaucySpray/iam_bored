@@ -1,11 +1,13 @@
 @import 'config';
 
 // COMPONENTS
-@import './components/canvas';
-@import './components/horizontal';
-@import './components/player';
 @import './components/loader';
+@import './components/horizontal';
+@import './components/canvas';
+@import './components/player';
+@import './components/display';
 @import './components/spotify';
+@import './components/mute';
 
 // SECTIONS
 @import './sections/landing';

@@ -88,7 +88,7 @@ class Controller {
                     if(!document.querySelector('.loader')) {
                         this.handleWheel(_e.deltaY)
                     }
-                }, 1600)
+                }, 1000)
                 , 100
             ),
             { passive: false }
@@ -103,7 +103,7 @@ class Controller {
                     else if (_e.direction == 2 && !document.querySelector('.loader')) {
                         this.handleWheel(100)
                     }
-                }, 1600)
+                }, 1000)
                 , 100
             ),
             { passive: false }
