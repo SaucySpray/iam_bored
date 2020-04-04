@@ -16,7 +16,7 @@ class Loader {
         // DOM
         this.loader = document.querySelector('.loader')
         this.loaderBtn = this.loader.querySelector('.loader__btn')
-        this.loaderText = this.loader.querySelector('.loader__text')
+        this.loaderText = this.loader.querySelectorAll('.loader__text')
     }
 
     event() {

@@ -24,6 +24,8 @@ class Controller {
         this.container = document.querySelector('.horizontal')
         this.sections = this.container.querySelectorAll('.section')
         this.spotify = document.querySelector('.spotify__img__g')
+        this.muteBtn = document.querySelector('.mute-btn')
+        this.muteBtnWaves = document.querySelector('.mute-btn__el__waves')
         this.mouse = {
             x: 0,
             y: 0
@@ -42,6 +44,7 @@ class Controller {
         }
         this.animated = [true, false, false, false, false, false, false, false]
         this.isAnimating = false
+        this.isMuted = false
         this.loop = this.loop.bind(this)
     }
 
@@ -59,6 +62,21 @@ class Controller {
         this.mousemove = window.addEventListener('mousemove', (_e) => {
             this.mouse.x = _e.clientX
             this.mouse.y = _e.clientY
+        })
+
+        this.muteBtn.addEventListener('click', () => {
+            if(this.isMuted) {
+                this.isMuted = false
+                this.muteBtnWaves.style.opacity = 1
+                this.startSong(this.slides.current)
+            }
+            else {
+                this.isMuted = true
+                this.audioElement.pause()
+                this.audioElement.currentTime = 0
+                cancelAnimationFrame(this.rafId)
+                this.muteBtnWaves.style.opacity = 0
+            }
         })
 
         // Wheel & Pan
@@ -119,7 +137,7 @@ class Controller {
         this.bufferLength = this.analyser.frequencyBinCount
         this.frequencyData = new Uint8Array(this.bufferLength)
 
-        this.audioElement.volume = .5
+        this.audioElement.volume = .2
 
         // Variables
         this.playing = false
@@ -168,7 +186,9 @@ class Controller {
         }
 
         // PLAY
-        this.startSong(this.slides.current)
+        if(!this.isMuted) {
+            this.startSong(this.slides.current)
+        }
         new Display(this.slides.current)
 
         // SLIDE
