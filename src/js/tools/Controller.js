@@ -23,6 +23,7 @@ class Controller {
         // DOM
         this.container = document.querySelector('.horizontal')
         this.sections = this.container.querySelectorAll('.section')
+        this.spotify = document.querySelector('.spotify__img__g')
         this.mouse = {
             x: 0,
             y: 0
@@ -194,6 +195,13 @@ class Controller {
             value: this.loader.load(assets.images[this.slides.current]),
             delay: 0.4
         })
+
+        if (this.slides.current == 0 || this.slides.current == 1 || this.slides.current == 5) {
+            this.spotify.style.fill = "#131313"
+        }
+        else {
+            this.spotify.style.fill = "#FFFFFF"
+        }
 
         // ANIMATE
         if (!this.animated[this.slides.current]) {

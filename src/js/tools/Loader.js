@@ -47,24 +47,9 @@ class Loader {
                 ease: Expo.easeOut
             }
         )
-
-        TweenMax.fromTo(this.three.camera.position, 1.4,
-            {
-                z: 10,
-                ease: Sine.easeInOut
-            },
-            {
-                z: 5,
-                ease: Sine.easeInOut
-            }
-        )
     }
 
     out() {
-        landing()
-        this.controller.startSong(0)
-        new Display(0)
-
         TweenMax.to(this.loaderText, 0.4, {
             y: 30,
             opacity: 0,
@@ -77,9 +62,23 @@ class Loader {
             delay: 0.4
         })
 
-        TweenMax.set(this.three.camera.position, { z: 10 })
+        TweenMax.fromTo(this.three.camera.position, 0.8,
+            {
+                z: 13,
+                ease: Sine.easeInOut
+            },
+            {
+                z: 10,
+                ease: Sine.easeInOut
+            }
+        )
 
-        setTimeout(() => document.body.removeChild(this.loader), 1200)
+        setTimeout(() => {
+            document.body.removeChild(this.loader)
+            landing()
+            this.controller.startSong(0)
+            new Display(0)
+        }, 200)
     }
 }
 

@@ -1,0 +1,37 @@
+.spotify {
+    width: 5rem;
+    height: 5rem;
+    position: fixed;
+    bottom: 8rem;
+    left: 8rem;
+    z-index: 100;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+    transition: fill 1.2 ease-in-out;
+
+    @media screen and (max-width: $vp__md) {
+        bottom: 4rem;
+        left: 4rem;
+    }
+
+    @media screen and (max-width: $vp__sm) {
+        width: 4rem;
+        height: 4rem;
+        bottom: 2rem;
+        left: 2rem;
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: fill 1s ease-in-out;
+
+        &__g {
+            fill: $black;
+            transition: fill 1s ease-in-out;
+        }
+    }
+}

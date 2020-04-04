@@ -20,13 +20,14 @@ module.exports = {
                 test: /\.(jpg|png|svg|gif)$/,
                 loader: 'file-loader',
                 options: {
-                    outputPath: path.join('static', 'img')
+                    outputPath: 'static/images',
+                    name: '[name].[ext]',
                 }
             }, {
                 test: /\.(mov|mp4)$/,
                 loader: 'file-loader',
                 options: {
-                    outputPath: 'static/video',
+                    outputPath: 'static/videos',
                     name: '[name].[ext]',
                 }
             }, {
