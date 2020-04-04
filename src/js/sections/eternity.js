@@ -1,4 +1,4 @@
-import { gsap, TimelineMax, Expo, Power0 } from 'gsap'
+import { TimelineMax, Expo, Power0, Bounce } from 'gsap'
 import SplitTextJS from 'split-text-js'
 
 const eternity = () => {

@@ -1,4 +1,4 @@
-import { gsap, TimelineMax, Sine } from 'gsap'
+import { gsap, TimelineMax, Expo } from 'gsap'
 import SplitTextJS from 'split-text-js'
 
 const think = () => {

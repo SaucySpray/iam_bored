@@ -1,10 +1,12 @@
 import * as THREE from 'three'
-import SplitTextJS from 'split-text-js'
+import _ from 'lodash'
+import { TweenMax, Sine, Expo } from 'gsap'
+import Hammer from 'hammerjs'
 import { landing, alone, eternity, think, about, meaning, slow, fast, care } from '../sections'
-import { assets, sounds, textures } from '../tools/Assets'
-import { Display } from '../Player'
+import { assets, sounds, textures } from './Assets'
+import { Display } from './Display'
 
-export class Horizontal {
+class Controller {
     constructor(_three) {
         this.cache(_three)
         this.mounted()
@@ -44,8 +46,6 @@ export class Horizontal {
 
     mounted() {
         this.container.style.transform = ''
-        landing()
-        this.setDisplay()
         this.events()
         this.setupAudio()
         this.resize(this.slides)
@@ -65,7 +65,9 @@ export class Horizontal {
             _.debounce(
                 _.throttle((_e) => {
                     _e.preventDefault()
-                    this.handleWheel(_e.deltaY)
+                    if(!document.querySelector('.loader')) {
+                        this.handleWheel(_e.deltaY)
+                    }
                 }, 1600)
                 , 100
             ),
@@ -75,11 +77,10 @@ export class Horizontal {
         this.hammer.on('pan',
             _.debounce(
                 _.throttle((_e) => {
-                    console.log('mobile throttle')
-                    if (_e.direction == 4) {
+                    if (_e.direction == 4 && !document.querySelector('.loader')) {
                         this.handleWheel(-100)
                     }
-                    else if (_e.direction == 2) {
+                    else if (_e.direction == 2 && !document.querySelector('.loader')) {
                         this.handleWheel(100)
                     }
                 }, 1600)
@@ -143,15 +144,14 @@ export class Horizontal {
         this.rafId = requestAnimationFrame(this.loop)
 
         let scale = 0
-
         this.analyser.getByteFrequencyData(this.frequencyData)
         for (let i = 0; i < 64; i++) {
-            scale = (this.frequencyData[i] * 0.01) / 4
+            scale = (this.frequencyData[i] * 0.01) / 2
         }
 
         TweenMax.to(this.mesh.scale, 0.1, {
-            x: 1 + scale,
-            y: 1 + scale,
+            x: scale + 1.2,
+            y: scale + 1.2,
             ease: Sine.easeInOut
         })
     }
@@ -168,7 +168,6 @@ export class Horizontal {
 
         // PLAY
         this.startSong(this.slides.current)
-        this.setDisplay()
         new Display(this.slides.current)
 
         // SLIDE
@@ -182,11 +181,9 @@ export class Horizontal {
         })
         if (this.slides.current % 2 === 0) {
             this.three.scene.getObjectByName('background').material.uniforms.u_texture1.value = this.loader.load(textures[this.slides.current])
-            console.log(textures[this.slides.current])
         }
         else {
             this.three.scene.getObjectByName('background').material.uniforms.u_texture0.value = this.loader.load(textures[this.slides.current])
-            console.log(textures[this.slides.current])
         }
 
         TweenMax.to(this.meshWrapper.rotation, 1.0, {
@@ -234,14 +231,6 @@ export class Horizontal {
         }
     }
 
-    setDisplay() {
-        // this.display.querySelector('.player__display__title').innerHTML = ''
-        // this.display.querySelector('.player__display__title').innerHTML = assets.sounds[this.slides.current]
-        // this.display.querySelector('.player__display__artist').innerHTML = ''
-        // this.display.querySelector('.player__display__artist').innerHTML = assets.artist[this.slides.current]
-        // this.display.querySelector('.player__display__link>a').href = assets.links[this.slides.current]
-    }
-
     counter(_increase) {
         let counter = this.slides.current
 
@@ -271,3 +260,5 @@ export class Horizontal {
         this.container.setAttribute('data-current', this.slides.current)
     }
 }
+
+export { Controller }

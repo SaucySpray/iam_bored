@@ -1,4 +1,5 @@
 import SplitTextJS from 'split-text-js'
+import { TimelineMax, Expo } from 'gsap'
 
 export const Display = (_current) => {
     // DOM
@@ -30,21 +31,6 @@ export const Display = (_current) => {
 
     // Animate
     const tl = new TimelineMax({delay: 0.4})
-
-    // tl.fromTo(
-    //     wrapper[_current],
-    //     0.4,
-    //     {
-    //         opacity: 0,
-    //         rotation: 70,
-    //         ease: Expo.easeOut
-    //     },
-    //     {
-    //         opacity: 1,
-    //         rotation: 0,
-    //         ease: Expo.easeOut
-    //     }
-    // )
 
     tl.staggerFromTo(
         splitLeftTexts[_current].chars,
@@ -86,13 +72,13 @@ export const Display = (_current) => {
             y: 0,
             opacity: 1,
             ease: Expo.easeOut,
-            delay: 0.2
+            delay: 0.8
         },
         {
             y: 20,
             opacity: 0,
             ease: Expo.easeOut,
-            delay: 0.2
+            delay: 0.8
         }
     )
 }

@@ -1,4 +1,4 @@
-import { gsap, TimelineMax } from 'gsap'
+import { TweenMax, TimelineMax } from 'gsap'
 
 const meaning = () => {
     const tl = new TimelineMax()

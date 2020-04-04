@@ -1,4 +1,4 @@
-import { gsap, TimelineMax, Sine } from 'gsap'
+import { TimelineMax, Sine } from 'gsap'
 import SplitTextJS from 'split-text-js'
 
 const alone = () => {

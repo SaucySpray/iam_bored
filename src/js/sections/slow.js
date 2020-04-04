@@ -1,4 +1,4 @@
-import { gsap, TimelineMax } from 'gsap'
+import { TweenMax, TimelineMax } from 'gsap'
 
 const slow = () => {
     const tl = new TimelineMax()

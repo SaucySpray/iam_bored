@@ -30,6 +30,7 @@ import texture06 from '../../static/textures/06.jpg'
 import texture07 from '../../static/textures/07.jpg'
 import texture08 from '../../static/textures/08.jpg'
 export const textures = [texture00, texture01, texture02, texture03, texture04, texture05, texture06, texture07, texture08]
+console.log(textures[0])
 
 export const artist = ['Kings of leon', 'The Whitest Boy Alive', 'Bonobo', 'Crystal Places', 'Joji', 'BRNS', 'Clairo', '1991', 'Nirvana']
 export const names = ['Trunk', 'Golden cage', 'Maia - mixed', 'Bent your mind', 'YEAH RIGHT', 'Mexico', 'Hello?', 'Sprites', 'About a girl']
@@ -52,3 +53,34 @@ export const assets = {
     sounds: sounds,
     images: images
 }
+
+function importAllImages(r, array) {
+    const allImages = r.keys().map(r)
+
+    allImages.forEach(src => {
+        const image = new Image()
+
+        image.src = src
+
+        array.push(image)
+    })
+}
+
+function importAllSounds(r, array) {
+    const allSounds = r.keys().map(r)
+
+    allSounds.forEach(src => {
+        const sound = new Audio()
+
+        sound.src = src
+
+        array.push(sound)
+    })
+}
+
+const soundsArray = []
+importAllImages(require.context('../../static/sounds/'), soundsArray)
+const imagesArray = []
+importAllImages(require.context('../../static/images/'), imagesArray)
+const texturesArray = []
+importAllImages(require.context('../../static/textures/'), texturesArray)

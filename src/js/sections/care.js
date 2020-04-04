@@ -1,4 +1,5 @@
 import SplitTextJS from 'split-text-js'
+import { TweenMax, TimelineMax } from 'gsap'
 
 const care = () => {
     // DOM

@@ -1,0 +1,46 @@
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: $white;
+
+    &__wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        width: 30rem;
+    }
+
+    &__text {
+        font-family: 'Inter var', sans-serif;
+        font-weight: 200;
+        font-size: 2rem;
+        color: $black;
+        margin-bottom: 3rem;
+    }
+
+    &__btn {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 4rem;
+        font-family: 'Inter var', sans-serif;
+        font-weight: 200;
+        font-size: 2rem;
+        color: $black;
+        cursor: pointer;
+        transition: 0.2s ease-out;
+        opacity: 0;
+
+        &:hover {
+            font-weight: 600;
+        }
+    }
+}

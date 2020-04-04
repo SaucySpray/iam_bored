@@ -1,6 +1,8 @@
 import * as THREE from 'three'
+import CameraControls from 'camera-controls'
+CameraControls.install({ THREE: THREE })
+import { TweenMax, Sine } from 'gsap'
 import { Interaction } from 'three.interaction'
-import { Controller } from './Controller'
 import { Cover, Background, Lights, Particles } from './mesh'
 
 const options = {
@@ -44,7 +46,6 @@ class Three {
         this.scene
         this.renderer
         this.interaction
-        this.controller
 
         // Shader
         this.loader
@@ -76,9 +77,6 @@ class Three {
         this.renderer.setPixelRatio(window.devicePixelRatio)
         this.renderer.domElement.classList.add('canvas')
         this.container.appendChild(this.renderer.domElement)
-
-        // Controls
-        this.controller = new Controller(this.camera, this.renderer.domElement)
 
         // Interaction
         this.interaction = new Interaction(this.renderer, this.scene, this.camera)
