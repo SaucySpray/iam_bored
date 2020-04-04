@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import CameraControls from 'camera-controls'
 CameraControls.install({ THREE: THREE })
-import { TweenMax, Sine } from 'gsap'
+import { TweenMax, Sine, Expo } from 'gsap'
 import { Interaction } from 'three.interaction'
 import { Cover, Background, Lights, Particles } from './mesh'
 
@@ -113,7 +113,7 @@ class Three {
             TweenMax.to(this.scene.getObjectByName('cover').rotation, 1.2, {
                 x: ((((this.mouse.y / window.innerWidth) - 0.5)) * 30) * Math.PI / 180,
                 y: ((((this.mouse.x / window.innerWidth) - 0.5)) * 30) * Math.PI / 180,
-                ease: Sine.easeOut
+                ease: Expo.easeOut
             })
         })
 

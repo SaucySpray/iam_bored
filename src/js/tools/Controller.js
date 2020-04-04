@@ -25,6 +25,7 @@ class Controller {
         this.sections = this.container.querySelectorAll('.section')
         this.spotify = document.querySelector('.spotify__img__g')
         this.muteBtn = document.querySelector('.mute-btn')
+        this.muteBtnEl = document.querySelectorAll('.mute-btn__el')
         this.muteBtnWaves = document.querySelector('.mute-btn__el__waves')
         this.mouse = {
             x: 0,
@@ -218,9 +219,17 @@ class Controller {
 
         if (this.slides.current == 0 || this.slides.current == 1 || this.slides.current == 5) {
             this.spotify.style.fill = "#131313"
+            this.muteBtnEl.forEach(el => {
+                el.style.stroke = "#131313"
+                el.style.fill = "#131313"
+            })
         }
         else {
             this.spotify.style.fill = "#FFFFFF"
+            this.muteBtnEl.forEach(el => {
+                el.style.stroke = "#FFFFFF"
+                el.style.fill = "#FFFFFF"
+            })
         }
 
         // ANIMATE
