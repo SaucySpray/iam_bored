@@ -25,11 +25,11 @@ const about = () => {
     tl2.to(splitTexts[1].chars[2], 0.5, { visibility: 'visible', delay: 1 })
 
     // Carousel
-    const tl3 = new TimelineMax({ delay: 1.8 })
+    const tl3 = new TimelineMax({ delay: 1.6 })
 
     // Love
     tl3.to(splitTexts[2].words[0], 0.1, { visibility: 'visible' })
-    tl3.to(splitTexts[3].words[0], 0.1, { visibility: 'visible', transformOrigin: "left bottom", delay: 0.3 })
+    tl3.to(splitTexts[3].words[0], 0.1, { visibility: 'visible', transformOrigin: "left bottom", delay: 0.2 })
     tl3.to(splitTexts[3].words[0], 0.6, { rotate: 45, ease: Bounce.easeOut, delay: 0.2 })
 
     //Life
@@ -49,7 +49,7 @@ const about = () => {
     tl3.to(carousel, 0.4, { y: '-82%', ease: Sine.easeInOut, delay: 1.4 })
     tl3.staggerTo(splitTexts[6].chars, 0.6, { visibility: 'visible' }, 0.2)
 
-    tl3.to(carousel, 0.3, { y: '0%', ease: Sine.easeInOut, delay: 0.6 })
+    tl3.to(carousel, 0.3, { y: '0%', ease: Sine.easeInOut, delay: 1.8 })
     tl3.to(splitTexts[3].words[0], 0.6, { rotate: 50, ease: Bounce.easeOut, delay: -0.1 })
 
     return tl1, tl2, tl3

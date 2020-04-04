@@ -23,8 +23,8 @@ const think = () => {
     const tl2 = new TimelineMax({ delay: 3.8 })
     tl2.to(splitTexts[3].words[0], 0.2, { visibility: 'visible' })
     tl2.to(splitTexts[4].words[0], 0.2, { visibility: 'visible', delay: 0.1 })
-    tl2.to(splitTexts[4].words[0], 0.2, { mixBlendMode: 'difference', delay: 0.3 })
-    tl2.to(splitTexts[3].words[0], 0.4, { left: 0, x: '44%', y: '-30%', scale: 2, ease: Sine.easeOut, delay: 0.6 })
+    tl2.to(splitTexts[4].words[0], 0.2, { mixBlendMode: 'difference', delay: 0.1 })
+    tl2.to(splitTexts[3].words[0], 0.3, { left: 0, x: '44%', y: '-30%', scale: 2, ease: Expo.easeOut, delay: 0.3 })
 
     return tl1, tl2
 }

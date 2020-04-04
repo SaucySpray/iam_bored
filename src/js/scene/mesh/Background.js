@@ -1,8 +1,6 @@
 import * as THREE from 'three'
 import { vertex, fragment } from '../../../shaders/background'
-import { videos, DOMvideos, textures } from '../../tools/Assets'
-
-DOMvideos.forEach(video => video.play())
+import { textures } from '../../tools/Assets'
 
 export const Background = () => {
     const geometry = new THREE.PlaneBufferGeometry(36, 18, 64, 64)
@@ -47,28 +45,20 @@ export const Background = () => {
         u_texture1: {
             type: 'sampler2D',
             value: new THREE.TextureLoader().load(textures[0])
-        },
-        // u_texture1: {
-        //     type: 'sampler2D',
-        //     value: new THREE.VideoTexture(DOMvideos[0])
-        // },
-        // u_texture2: {
-        //     type: 'sampler2D',
-        //     value: new THREE.VideoTexture(DOMvideos[1])
-        // }
+        }
     }
 
     const material = new THREE.ShaderMaterial({
         uniforms: uniforms,
         vertexShader: vertex,
         fragmentShader: fragment,
-        side: THREE.DoubleSide
+        side: THREE.BackSide
     })
 
     const material2 = new THREE.MeshStandardMaterial({
         color: 0x13577a,
         emissive: 0x93762a,
-        side: THREE.DoubleSide,
+        side: THREE.BackSide,
         roughness: 0,
         metalness: 0.3
     })

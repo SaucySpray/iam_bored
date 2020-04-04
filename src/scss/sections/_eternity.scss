@@ -45,18 +45,18 @@
 
         // eternity
         &--4 {
-            width: 100rem;
+            width: 25rem;
 
             @media screen and (max-width: $vp__lg) {
-                width: 74rem;
+                width: 25rem;
             }
 
             @media screen and (max-width: $vp__md) {
-                width: 66rem;
+                width: 17rem;
             }
 
             @media screen and (max-width: $vp__sm) {
-                width: 30rem;
+                width: 13rem;
             }
 
             .SplitTextJS-char {

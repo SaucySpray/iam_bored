@@ -31,16 +31,6 @@ import texture07 from '../../static/textures/07.jpg'
 import texture08 from '../../static/textures/08.jpg'
 export const textures = [texture00, texture01, texture02, texture03, texture04, texture05, texture06, texture07, texture08]
 
-import video00 from '../../static/videos/01.mp4'
-import video01 from '../../static/videos/02.mp4'
-export const videos = [video00, video01]
-
-export const DOMvideos = document.querySelectorAll('.video')
-const DOMvideosSources = document.querySelectorAll('.video>source')
-for(let i=0; i<videos.length; i++) {
-    DOMvideosSources[i].src = `${videos[i]}`
-}
-
 export const artist = ['Kings of leon', 'The Whitest Boy Alive', 'Bonobo', 'Crystal Places', 'Joji', 'BRNS', 'Clairo', '1991', 'Nirvana']
 export const names = ['Trunk', 'Golden cage', 'Maia - mixed', 'Bent your mind', 'YEAH RIGHT', 'Mexico', 'Hello?', 'Sprites', 'About a girl']
 export const links = [
@@ -60,6 +50,5 @@ export const assets = {
     names :names,
     links: links,
     sounds: sounds,
-    images: images,
-    videos: videos
+    images: images
 }

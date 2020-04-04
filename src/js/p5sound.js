@@ -1,15 +1,5 @@
 import { three } from '../index'
-
-import trunk from '../static/audio/trunk.mp3'
-import goldenCage from '../static/audio/golden-cage.mp3'
-import maiaMixed from '../static/audio/maia-mixed.mp3'
-import BentYourMind from '../static/audio/bent-your-mind.mp3'
-import yeahRight from '../static/audio/yeah-right.mp3'
-import mexico from '../static/audio/mexico.mp3'
-import hello from '../static/audio/hello.mp3'
-import sprites from '../static/audio/sprites.mp3'
-import aboutAGirl from '../static/audio/about-a-girl.mp3'
-import { Line } from 'three'
+import { sounds } from '../js/tools/Assets'
 
 let amp, fft, threeScene = null
 let vol, spectrum = 0
@@ -32,15 +22,10 @@ function windowResized() {
 function preload() {
     myp5.soundFormats('mp3')
     myp5.masterVolume(0.2)
-    mysounds.push(myp5.loadSound(trunk))
-    mysounds.push(myp5.loadSound(goldenCage))
-    mysounds.push(myp5.loadSound(maiaMixed))
-    mysounds.push(myp5.loadSound(BentYourMind))
-    mysounds.push(myp5.loadSound(yeahRight))
-    mysounds.push(myp5.loadSound(mexico))
-    mysounds.push(myp5.loadSound(hello))
-    mysounds.push(myp5.loadSound(sprites))
-    mysounds.push(myp5.loadSound(aboutAGirl))
+
+    for (let i=0; i<sounds.length; i++) {
+        mysounds.push(myp5.loadSound(document.querySelectorAll(`.playlist__song--${i}`)))
+    }
 }
 
 function setup() {
@@ -118,16 +103,16 @@ function draw() {
     // }
 
     // Draw
-    myp5.beginShape()
-    for (let i=0; i<spectrum.length; i++) {
-        let amp = spectrum[i]
-        let y = myp5.map(amp, 0, spectrum.length, myp5.height / 2, 0)
-        // myp5.line(i, myp5.height / 2, i, y)
-        myp5.vertex(i, y)
-    }
-    myp5.stroke(255)
-    myp5.noFill()
-    myp5.endShape()
+    // myp5.beginShape()
+    // for (let i=0; i<spectrum.length; i++) {
+    //     let amp = spectrum[i]
+    //     let y = myp5.map(amp, 0, spectrum.length, myp5.height, 0)
+    //     // myp5.line(i, myp5.height / 2, i, y)
+    //     myp5.vertex(i, y)
+    // }
+    // myp5.stroke(0)
+    // myp5.noFill()
+    // myp5.endShape()
 
     // Animate mesh
     TweenMax.to(threeScene.scene.children[0].children[0].scale ,0.1, {
@@ -135,4 +120,4 @@ function draw() {
     })
 }
 
-new p5(sketch)
+// window.onload = () => new p5(sketch)

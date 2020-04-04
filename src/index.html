@@ -13,18 +13,12 @@
     <div id="threejs" class="threejs"></div>
 
     <div class="player">
-        <div class="player__display">
-            <div class="player__display__close"><span>x</span></div>
-            <div class="player__display__title"></div>
-            <div class="player__display__artist"></div>
-            <div class="player__display__link">→ <a href="" target="_blank">see on spotify</a></div>
-        </div>
-
         <div class="playlist">
-            <audio id="trunk" class="playlist__song playlist__song--0">
+            <audio id="audio" class="playlist__song playlist__song--0"></audio>
+            <!-- <audio id="trunk" class="playlist__song playlist__song--0">
                 <source src="static/audio/00_trunk.mp3" class="playlist__song__inner">
-            </audio>
-            <audio id="goldenCage" class="playlist__song playlist__song--1">
+            </audio> -->
+            <!-- <audio id="goldenCage" class="playlist__song playlist__song--1">
                 <source src="static/audio/01_golden-cage.mp3" class="playlist__song__inner">
             </audio>
             <audio id="maiaMixed" class="playlist__song playlist__song--2">
@@ -47,37 +41,64 @@
             </audio>
             <audio id="aboutAGirl" class="playlist__song playlist__song--8">
                 <source src="static/audio/08_about-a-girl.mp3" class="playlist__song__inner">
-            </audio>
+            </audio> -->
         </div>
+    </div>
 
-        <div class="videos">
-            <video class="video video--0" loop crossOrigin="anonymous" playsinline style="display:none">
-                <source src="" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-            </video>
-            <video class="video video--1" loop crossOrigin="anonymous" playsinline style="display:none">
-                <source src="" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-            </video>
-            <video class="video video--2" loop crossOrigin="anonymous" playsinline style="display:none">
-                <source src="" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-            </video>
-            <video class="video video--3" loop crossOrigin="anonymous" playsinline style="display:none">
-                <source src="" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-            </video>
-            <video class="video video--4" loop crossOrigin="anonymous" playsinline style="display:none">
-                <source src="" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-            </video>
-            <video class="video video--5" loop crossOrigin="anonymous" playsinline style="display:none">
-                <source src="" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-            </video>
-            <video class="video video--6" loop crossOrigin="anonymous" playsinline style="display:none">
-                <source src="" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-            </video>
-            <video class="video video--7" loop crossOrigin="anonymous" playsinline style="display:none">
-                <source src="" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-            </video>
-            <video class="video video--8" loop crossOrigin="anonymous" playsinline style="display:none">
-                <source src="" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-            </video>
+    <div class="display">
+        <div class="display__el display__el--0">
+            <div class="row display__wrapper">
+                <h2 class="display__text display__text__left">tru</h2>
+                <h2 class="display__text display__text__right">nk</h2>
+            </div>
+        </div>
+        <div class="display__el display__el--1">
+            <div class="row display__wrapper">
+                <h2 class="display__text display__text__left">golden&nbsp;</h2>
+                <h2 class="display__text display__text__right">Cage</h2>
+            </div>
+        </div>
+        <div class="display__el display__el--2">
+            <div class="row display__wrapper">
+                <h2 class="display__text display__text__left">maia&nbsp;</h2>
+                <h2 class="display__text display__text__right">mixed</h2>
+            </div>
+        </div>
+        <div class="display__el display__el--3">
+            <div class="row display__wrapper">
+                <h2 class="display__text display__text__left">bent yo</h2>
+                <h2 class="display__text display__text__right">ur mind</h2>
+            </div>
+        </div>
+        <div class="display__el display__el--4">
+            <div class="row display__wrapper">
+                <h2 class="display__text display__text__left">yeah&nbsp;</h2>
+                <h2 class="display__text display__text__right">right</h2>
+            </div>
+        </div>
+        <div class="display__el display__el--5">
+            <div class="row display__wrapper">
+                <h2 class="display__text display__text__left">mex</h2>
+                <h2 class="display__text display__text__right">ico</h2>
+            </div>
+        </div>
+        <div class="display__el display__el--6">
+            <div class="row display__wrapper">
+                <h2 class="display__text display__text__left">hel</h2>
+                <h2 class="display__text display__text__right">lo?</h2>
+            </div>
+        </div>
+        <div class="display__el display__el--7">
+            <div class="row display__wrapper">
+                <h2 class="display__text display__text__left">spri</h2>
+                <h2 class="display__text display__text__right">tes</h2>
+            </div>
+        </div>
+        <div class="display__el display__el--8">
+            <div class="row display__wrapper">
+                <h2 class="display__text display__text__left">about a&nbsp;</h2>
+                <h2 class="display__text display__text__right">girl</h2>
+            </div>
         </div>
     </div>
 
@@ -86,7 +107,7 @@
         <!-- The whitest boy alive - Golden cage -->
         <section class="section horizontal__container landing z1" data-anim="landing">
             <div class="section--wrapper horizontal__wrapper">
-                <h1 class="text landing__text landing__text--1">Hi,</h1>
+                <h1 class="text landing__text landing__text--1">hi,</h1>
                 <div class="row">
                     <h1 class="text landing__text landing__text--2">I'm bored</h1>
                     <h2 class="text landing__text landing__text--3">...</h2>
@@ -125,7 +146,7 @@
                 <div class="col">
                     <div class="row wrap">
                         <h2 class="text eternity__text eternity__text--4">
-                            eternity eternity eternity eternity eternity eternity eternity eternity eternity eternity eternity eternity eternity eternity eternity eternity eternity eternity eternity eternity 
+                            eternity eternity eternity eternity eternity eternity eternity eternity
                         </h2>
                     </div>
                 </div>
@@ -136,7 +157,7 @@
         <section class="section horizontal__container think z1" data-anim="think">
             <div class="section--wrapper horizontal__wrapper">
                 <div class="row">
-                    <h2 class="text think__text think__text--1">When I'm&nbsp;</h2>
+                    <h2 class="text think__text think__text--1">when I'm&nbsp;</h2>
                     <h2 class="text think__text think__text--2">alone,</h2>
                 </div>
                 <h2 class="text think__text think__text--3">I tend to</h2>
@@ -173,7 +194,7 @@
                 <div class="row">
                     <h2 class="text meaning__text meaning__text--2">never&nbsp;</h2>
                     <h2 class="text meaning__text meaning__text--3">done</h2>
-                    <h2 class="about__text about__text--4">...&nbsp;</h2>
+                    <h2 class="text meaning__text text meaning__text--4">...&nbsp;</h2>
                 </div>
             </div>
         </section>
@@ -207,7 +228,7 @@
         <!-- Nirvana - About a girl -->
         <section class="section horizontal__container care z1" data-anim="care">
             <div class="section--wrapper horizontal__wrapper">
-                <h2 class="text care__text care__text--1">Take care,</h2>
+                <h2 class="text care__text care__text--1">take care,</h2>
                 <h2 class="text care__text care__text--2">express yourself</h2>
                 <div class="row">
                     <h2 class="text care__text care__text--3">&&nbsp;</h2>

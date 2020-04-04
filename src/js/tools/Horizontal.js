@@ -1,8 +1,8 @@
 import * as THREE from 'three'
-
+import SplitTextJS from 'split-text-js'
 import { landing, alone, eternity, think, about, meaning, slow, fast, care } from '../sections'
-
-import { assets, images, textures } from '../tools/Assets'
+import { assets, sounds, textures } from '../tools/Assets'
+import { Display } from '../Player'
 
 export class Horizontal {
     constructor(_three) {
@@ -21,7 +21,6 @@ export class Horizontal {
         // DOM
         this.container = document.querySelector('.horizontal')
         this.sections = this.container.querySelectorAll('.section')
-        this.display = document.querySelector('.player__display')
         this.mouse = {
             x: 0,
             y: 0
@@ -40,9 +39,7 @@ export class Horizontal {
         }
         this.animated = [true, false, false, false, false, false, false, false]
         this.isAnimating = false
-
-        this.songs = document.querySelectorAll('.playlist__song')
-        this.songs.forEach(sound => sound.volume = 0.05)
+        this.loop = this.loop.bind(this)
     }
 
     mounted() {
@@ -50,6 +47,7 @@ export class Horizontal {
         landing()
         this.setDisplay()
         this.events()
+        this.setupAudio()
         this.resize(this.slides)
     }
 
@@ -68,7 +66,7 @@ export class Horizontal {
                 _.throttle((_e) => {
                     _e.preventDefault()
                     this.handleWheel(_e.deltaY)
-                }, 1000)
+                }, 1600)
                 , 100
             ),
             { passive: false }
@@ -84,7 +82,7 @@ export class Horizontal {
                     else if (_e.direction == 2) {
                         this.handleWheel(100)
                     }
-                }, 1000)
+                }, 1600)
                 , 100
             ),
             { passive: false }
@@ -98,18 +96,64 @@ export class Horizontal {
         if (window.innerWidth < 480) {
             TweenMax.to(this.meshWrapper.scale, 0.4, { x: 0.7, y: 0.7, ease: Sine.easeOut })
         }
-        else if (window.innerWidth < 480) {
+        else if (window.innerWidth > 480) {
             TweenMax.to(this.meshWrapper.scale, 0.4, { x: 1, y: 1, ease: Sine.easeOut })
         }
     }
 
-    playSong(_index) {
-        this.songs.forEach(song => {
-            song.pause()
-            song.currentTime = 0
+    setupAudio() {
+        this.audioElement = document.querySelector('#audio')
+        this.current = document.querySelector('.horizontal').dataset.current
+        this.audioElement.src = sounds[this.current]
+
+        // Audio API
+        this.audioCtx = new (window.AudioContext || window.webkitAudioContext)()
+        this.analyser = this.audioCtx.createAnalyser()
+
+        this.source = this.audioCtx.createMediaElementSource(this.audioElement)
+        this.source.connect(this.analyser)
+        this.source.connect(this.audioCtx.destination)
+
+        this.bufferLength = this.analyser.frequencyBinCount
+        this.frequencyData = new Uint8Array(this.bufferLength)
+
+        this.audioElement.volume = .5
+
+        // Variables
+        this.playing = false
+    }
+
+    startSong(_current) {
+        const current = _current
+        this.audioElement.src = sounds[current]
+        const audio = this.audioElement
+
+        if (audio.paused) {
+            audio.play()
+            this.rafId = requestAnimationFrame(this.loop)
+
+        } else {
+            audio.pause()
+            cancelAnimationFrame(this.rafId)
+            this.frequencyData = new Uint8Array(this.bufferLength)
+        }
+    }
+
+    loop() {
+        this.rafId = requestAnimationFrame(this.loop)
+
+        let scale = 0
+
+        this.analyser.getByteFrequencyData(this.frequencyData)
+        for (let i = 0; i < 64; i++) {
+            scale = (this.frequencyData[i] * 0.01) / 4
+        }
+
+        TweenMax.to(this.mesh.scale, 0.1, {
+            x: 1 + scale,
+            y: 1 + scale,
+            ease: Sine.easeInOut
         })
-        this.songs[_index].volume = 0.2
-        this.songs[_index].play()
     }
 
     handleWheel(_direction) {
@@ -123,29 +167,36 @@ export class Horizontal {
         }
 
         // PLAY
-        this.playSong(this.slides.current)
+        this.startSong(this.slides.current)
         this.setDisplay()
+        new Display(this.slides.current)
 
         // SLIDE
-        TweenMax.to(this.container, 0.6, { x: `-${this.slides.current}00vw`, ease: Expo.easeOut })
+        TweenMax.to(this.container, 0.4, { x: `-${this.slides.current}00vw`, ease: Expo.easeInOut, delay: 0.3 })
 
         // THREE - move mesh & change image
-        TweenMax.to(this.bgMesh.material.uniforms.u_progress, 0.4, {
+        TweenMax.to(this.bgMesh.material.uniforms.u_progress, 1.2, {
             value: this.slides.current % 2 === 0 ? 2.2 : 3.7,
-            ease: Expo.easeInOut
+            ease: Expo.easeInOut,
+            delay: -0.2
         })
         if (this.slides.current % 2 === 0) {
             this.three.scene.getObjectByName('background').material.uniforms.u_texture1.value = this.loader.load(textures[this.slides.current])
+            console.log(textures[this.slides.current])
         }
         else {
             this.three.scene.getObjectByName('background').material.uniforms.u_texture0.value = this.loader.load(textures[this.slides.current])
+            console.log(textures[this.slides.current])
         }
 
-        TweenMax.to(this.meshWrapper.rotation, 1.6, {
-            y: this.slides.current % 2 === 0 ? (0 * (Math.PI / 180)) : (360 * (Math.PI / 180)),
-            ease: Expo.easeOut
+        TweenMax.to(this.meshWrapper.rotation, 1.0, {
+            y: _direction > 0 ? '+=' + 360 * (Math.PI / 180) : '-=' + 360 * (Math.PI / 180),
+            ease: Expo.easeInOut
         })
-        this.mesh.material.uniforms.u_texture_0.value = this.loader.load(assets.images[this.slides.current])
+        TweenMax.to(this.mesh.material.uniforms.u_texture_0, 0, {
+            value: this.loader.load(assets.images[this.slides.current]),
+            delay: 0.4
+        })
 
         // ANIMATE
         if (!this.animated[this.slides.current]) {
@@ -184,11 +235,11 @@ export class Horizontal {
     }
 
     setDisplay() {
-        this.display.querySelector('.player__display__title').innerHTML = ''
-        this.display.querySelector('.player__display__title').innerHTML = assets.sounds[this.slides.current]
-        this.display.querySelector('.player__display__artist').innerHTML = ''
-        this.display.querySelector('.player__display__artist').innerHTML = assets.artist[this.slides.current]
-        this.display.querySelector('.player__display__link>a').href = assets.links[this.slides.current]
+        // this.display.querySelector('.player__display__title').innerHTML = ''
+        // this.display.querySelector('.player__display__title').innerHTML = assets.sounds[this.slides.current]
+        // this.display.querySelector('.player__display__artist').innerHTML = ''
+        // this.display.querySelector('.player__display__artist').innerHTML = assets.artist[this.slides.current]
+        // this.display.querySelector('.player__display__link>a').href = assets.links[this.slides.current]
     }
 
     counter(_increase) {

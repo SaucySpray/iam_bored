@@ -19,10 +19,10 @@ const eternity = () => {
 
     // feels
     const tl2 = new TimelineMax({ repeat: -1, delay: 1.8 })
-    tl2.to(splitTexts[1].words[0], 0.4, { visibility: 'visible', scale: 1.3, fontVariationSettings: "'wght' " + 700, ease: Bounce.easeInOut })
-    tl2.to(splitTexts[1].words[0], 0.2, { visibility: 'visible', scale: 1.1, fontVariationSettings: "'wght' " + 500, ease: Bounce.easeInOut })
-    tl2.to(splitTexts[1].words[0], 0.2, { visibility: 'visible', scale: 1.3, fontVariationSettings: "'wght' " + 700, ease: Bounce.easeInOut })
-    tl2.to(splitTexts[1].words[0], 0.4, { visibility: 'visible', scale: 1, fontVariationSettings: "'wght' " + 200, ease: Bounce.easeInOut })
+    tl2.to(splitTexts[1].words[0], 0.3, { visibility: 'visible', scale: 1.3, fontVariationSettings: "'wght' " + 700, ease: Bounce.easeInOut })
+    tl2.to(splitTexts[1].words[0], 0.15, { visibility: 'visible', scale: 1.1, fontVariationSettings: "'wght' " + 500, ease: Bounce.easeInOut })
+    tl2.to(splitTexts[1].words[0], 0.15, { visibility: 'visible', scale: 1.3, fontVariationSettings: "'wght' " + 700, ease: Bounce.easeInOut })
+    tl2.to(splitTexts[1].words[0], 0.3, { visibility: 'visible', scale: 1, fontVariationSettings: "'wght' " + 200, ease: Bounce.easeInOut })
 
     // like
     const tl3 = new TimelineMax({ delay: 0.6 })

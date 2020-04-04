@@ -29,10 +29,10 @@ const alone = () => {
     tl1.staggerTo(splitTexts[2].chars, 0.2, { visibility: 'visible' }, 0.1)
     tl1.staggerTo(splitTexts[3].chars, 0.2, { visibility: 'visible' }, 0.1)
 
-    // 2 weeks weeks
+    // 3 weeks weeks
     const tl4 = new TimelineMax({ delay: 0.2 })
     tl1.to(splitTexts[4].chars, 0.2, { visibility: 'visible', scale: 2.5, y: '55%', ease: Sine.easeOut })
-    tl1.to(splitTexts[4].chars, 0.1, { color: '#fff', delay: 0.2 })
+    tl1.to(splitTexts[4].chars, 0.1, { color: '#161616', delay: 0.2 })
     tl1.staggerTo(splitTexts[5].chars, 0.2, { visibility: 'visible', fontVariationSettings: "'wght' " + 200, ease: Sine.easeOut, delay: -0.1 }, 0.1)
     tl1.staggerTo(splitTexts[6].chars, 0.2, { visibility: 'visible', fontVariationSettings: "'wght' " + 200, ease: Sine.easeOut, delay: -0.4 }, 0.1)
 

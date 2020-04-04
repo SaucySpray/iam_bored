@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { Interaction } from 'three.interaction'
 import { Controller } from './Controller'
-import { Cover, Background, Lights, meshWrapper } from './mesh'
+import { Cover, Background, Lights, Particles } from './mesh'
 
 const options = {
     alpha: false,
@@ -90,6 +90,7 @@ class Three {
     mountWorld() {
         this.coverMesh = Cover()
         this.backgroundMesh = Background()
+        this.particles = Particles(200, 0.1, 0x000000)
         this.lights = Lights()
         this.scene.add(this.coverMesh, this.backgroundMesh, this.lights)
     }
@@ -155,6 +156,8 @@ class Three {
         // Animation
         this.camera.position.x = (Math.cos(this.clock.getElapsedTime() / 2)) * 0.08
         this.camera.position.y = (Math.sin(this.clock.getElapsedTime())) * 0.08
+        this.particles.position.x = (Math.cos(this.clock.getElapsedTime() / 2)) * 0.25
+        this.particles.position.y = (Math.sin(this.clock.getElapsedTime())) * 0.25
         this.backgroundMesh.rotation.y += 0.005
     }
 
