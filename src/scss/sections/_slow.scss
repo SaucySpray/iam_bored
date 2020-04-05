@@ -1,0 +1,25 @@
+.slow {
+    color: $white;
+
+    &__text {
+
+        &--1 {
+            .SplitTextJS-char {
+                visibility: hidden;
+            }
+        }
+
+        &--2 {
+            .SplitTextJS-wrapper {
+                font-weight: 200;
+                opacity: 0;
+            }
+        }
+
+        &--3 {
+            .SplitTextJS-char {
+                visibility: hidden;
+            }
+        }
+    }
+}

@@ -3,7 +3,7 @@ import CameraControls from 'camera-controls'
 CameraControls.install({ THREE: THREE })
 import { TweenMax, Sine, Expo } from 'gsap'
 import { Interaction } from 'three.interaction'
-import { Cover, Background, Lights, Particles } from './mesh'
+import { Cover, Background, Lights } from './mesh'
 
 const options = {
     alpha: false,
@@ -88,7 +88,6 @@ class Three {
     mountWorld() {
         this.coverMesh = Cover()
         this.backgroundMesh = Background()
-        this.particles = Particles(200, 0.1, 0x000000)
         this.lights = Lights()
         this.scene.add(this.coverMesh, this.backgroundMesh, this.lights)
     }
@@ -154,9 +153,7 @@ class Three {
         // Animation
         this.camera.position.x = (Math.cos(this.clock.getElapsedTime() / 2)) * 0.08
         this.camera.position.y = (Math.sin(this.clock.getElapsedTime())) * 0.08
-        this.particles.position.x = (Math.cos(this.clock.getElapsedTime() / 2)) * 0.25
-        this.particles.position.y = (Math.sin(this.clock.getElapsedTime())) * 0.25
-        this.backgroundMesh.rotation.y += 0.005
+        this.backgroundMesh.rotation.y += 0.0025
     }
 
     loop() {

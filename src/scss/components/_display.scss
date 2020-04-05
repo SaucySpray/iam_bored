@@ -17,7 +17,7 @@
 
     &__el {
         display: none;
-        position: absolute;
+        position: fixed;
         bottom: 8rem;
 
         @media screen and (max-width: $vp__md) {

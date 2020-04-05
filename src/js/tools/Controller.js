@@ -177,6 +177,8 @@ class Controller {
     }
 
     handleWheel(_direction) {
+        console.log(this.slides.max)
+
         // FORWARD - Move to the right
         if (_direction > 0) {
             this.counter(true)
